@@ -7,6 +7,9 @@ jobs: # a collection of steps
     steps: # a collection of executable commands
       - checkout # special step to check out source code to working directory
       - run:
+          name: Install Google Chrome
+          command: 'wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && sudo dpkg -i google-chrome-stable_current_amd64.deb'
+      - run:
           name: update-npm
           command: 'sudo npm install -g npm@latest'
       - run:

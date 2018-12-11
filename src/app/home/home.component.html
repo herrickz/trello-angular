@@ -1,3 +1,14 @@
-<p>
-  home works!
-</p>
+<h1>Boards</h1>
+
+<div *ngIf="!errorFetchingBoards">
+
+  <p *ngFor="let board of boards">
+      <a [routerLink]="" (click)="goToBoard(board.hashId)">{{ board.name }}</a>
+  </p>
+</div>
+
+<div *ngIf="errorFetchingBoards">
+  <p>
+    There was an error fetching your boards
+  </p>
+</div>

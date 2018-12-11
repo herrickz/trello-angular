@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BoardService } from '../services/board.service';
-import { Board } from '../models/board';
+import { SimpleBoard } from '../models/simple-board';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -9,16 +10,25 @@ import { Board } from '../models/board';
 })
 export class HomeComponent implements OnInit {
 
-  boards: Board[];
+  boards: SimpleBoard[];
+
+  errorFetchingBoards = false;
 
   constructor(
-    private boardService: BoardService
+    private boardService: BoardService,
+    private router: Router
   ) { }
 
   ngOnInit() { 
     this.boardService.getBoards().subscribe(boards => {
       this.boards = boards;
-    })
+    }, () => {
+      this.errorFetchingBoards = true
+    });
+  }
+
+  goToBoard(boardHashId: string) {
+    this.router.navigate(['board', boardHashId]);
   }
 
 }

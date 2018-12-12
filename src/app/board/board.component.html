@@ -1,3 +1,6 @@
-<p>
-  board works!
-</p>
+<div *ngIf="board | async; let board; else loading">
+  <h2>{{ board.name }}</h2>
+</div>
+<ng-template #loading>
+  <p>Loading board data...</p>
+</ng-template>

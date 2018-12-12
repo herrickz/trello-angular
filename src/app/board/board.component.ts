@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BoardService } from '../services/board.service';
+import { Board } from '../models/board';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-board',
@@ -9,6 +11,7 @@ import { BoardService } from '../services/board.service';
 })
 export class BoardComponent implements OnInit {
 
+  board: Observable<Board>
   
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -16,8 +19,8 @@ export class BoardComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    const hashId: string = this.activatedRoute.snapshot.params['hashId'];
-    this.boardService.getBoard(hashId);
+    const hashId: string = this.activatedRoute.snapshot.params['boardId'];
+    this.board = this.boardService.getBoard(hashId);
   }
 
 }

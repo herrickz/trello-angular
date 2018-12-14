@@ -19,7 +19,7 @@ export class BoardService {
     return this.http.get<SimpleBoard[]>(`${environment.apiUrl}/api/board/`);
   }
 
-  getBoard(hashId: string): Observable<Board> {
+  getBoard(hashId: string): Observable<Board|null> {
     return this.http.get<Board>(`${environment.apiUrl}/api/board/${hashId}/`)
   }
   

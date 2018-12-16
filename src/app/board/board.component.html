@@ -1,9 +1,9 @@
-<div *ngIf="board | async; let board; else loading; ">
+<div *ngIf="board != null">
   <h2>{{ board.name }}</h2>
 </div>
-<ng-template #loading *ngIf="!boardLoadError">
+<div *ngIf="!boardLoadError && board == null">
   <p>Loading board data...</p>
-</ng-template>
+</div>
 <p *ngIf="boardLoadError">
   There was an error loading this board
 </p>

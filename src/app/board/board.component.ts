@@ -12,7 +12,7 @@ import { catchError } from 'rxjs/operators';
 })
 export class BoardComponent implements OnInit {
 
-  board: Observable<Board|null>;
+  board: Board = null;
   boardLoadError = false;
 
   constructor(
@@ -22,12 +22,12 @@ export class BoardComponent implements OnInit {
 
   ngOnInit() {
     const hashId: string = this.activatedRoute.snapshot.params['boardId'];
-    this.board = this.boardService.getBoard(hashId).pipe(
-      catchError((error) => {
-        this.boardLoadError = true;
-        return of(null);
-      }
-    ));
+    this.boardService.getBoard(hashId).subscribe(board => {
+      this.board = board;
+    }, error => {
+      this.boardLoadError = true;
+    });
+
   }
 
 }

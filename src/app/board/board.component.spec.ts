@@ -6,6 +6,7 @@ import { of, throwError } from 'rxjs';
 import { BoardService } from '../services/board.service';
 import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 import { delay } from 'rxjs/operators';
+import { MaterialModule } from '../material.module';
 
 describe('BoardComponent', () => {
   let component: BoardComponent;
@@ -30,6 +31,9 @@ describe('BoardComponent', () => {
     
     TestBed.configureTestingModule({
       declarations: [ BoardComponent ],
+      imports: [
+        MaterialModule
+      ],
       providers: [
           { provide: ActivatedRoute, useValue: mockActivatedRoute },
           { provide: BoardService, useValue: mockBoardService }
@@ -54,7 +58,7 @@ describe('BoardComponent', () => {
     getBoardSpy.and.returnValue(of({name: 'the coolest board'}).pipe(delay(1000)));
     fixture.detectChanges();
 
-    expect(nativeElement.querySelector('p').textContent.trim()).toEqual('Loading board data...');
+    expect(nativeElement.querySelector('#loadingCard').textContent.trim()).toEqual('Loading board data...');
     
     tick(1000);
 
@@ -70,7 +74,7 @@ describe('BoardComponent', () => {
     getBoardSpy.and.returnValue(throwError('Error').pipe(delay(1000)));
     fixture.detectChanges();
 
-    expect(nativeElement.querySelector('p').textContent.trim()).toEqual('There was an error loading this board');
+    expect(nativeElement.querySelector('#errorCard').textContent.trim()).toEqual('There was an error loading this board');
 
   }));
 

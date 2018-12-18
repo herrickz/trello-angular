@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  boards: SimpleBoard[];
+  boards: SimpleBoard[] = null;
 
   errorFetchingBoards = false;
 

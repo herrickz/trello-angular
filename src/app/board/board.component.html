@@ -3,7 +3,7 @@
 </div>
 <div *ngIf="!boardLoadError && board == null">
   <p>
-    <mat-card class="loading-card" id="loadingCard">
+    <mat-card class="loading-card" id="boardLoadingCard">
       <p>
           Loading board data...
       </p>
@@ -19,7 +19,7 @@
   </p>
 </div>
 <p *ngIf="boardLoadError">
-  <mat-card class="error-card" id="errorCard">
+  <mat-card class="error-card" id="boardLoadErrorCard">
     There was an error loading this board
   </mat-card>
 </p>

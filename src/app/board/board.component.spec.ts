@@ -58,7 +58,7 @@ describe('BoardComponent', () => {
     getBoardSpy.and.returnValue(of({name: 'the coolest board'}).pipe(delay(1000)));
     fixture.detectChanges();
 
-    expect(nativeElement.querySelector('#loadingCard').textContent.trim()).toEqual('Loading board data...');
+    expect(nativeElement.querySelector('#boardLoadingCard').textContent.trim()).toEqual('Loading board data...');
     
     tick(1000);
 
@@ -74,7 +74,7 @@ describe('BoardComponent', () => {
     getBoardSpy.and.returnValue(throwError('Error').pipe(delay(1000)));
     fixture.detectChanges();
 
-    expect(nativeElement.querySelector('#errorCard').textContent.trim()).toEqual('There was an error loading this board');
+    expect(nativeElement.querySelector('#boardLoadErrorCard').textContent.trim()).toEqual('There was an error loading this board');
 
   }));
 

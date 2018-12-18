@@ -1,0 +1,17 @@
+
+.board-card-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.board-card {
+    width: 10em;
+    height: 3em;
+    margin: 1em;
+}
+
+.board-card:hover {
+    background-color: gray;
+    cursor: pointer;
+}

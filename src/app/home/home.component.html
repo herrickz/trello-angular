@@ -1,14 +1,35 @@
 <h1>Boards</h1>
 
-<div *ngIf="!errorFetchingBoards">
+<div *ngIf="!errorFetchingBoards && boards == null">
+    <p>
+      <mat-card class="loading-card" id="boardsLoadingCard">
+        <p>
+            Loading boards data...
+        </p>
+        <p>
+          <mat-progress-spinner
+            class="center"
+            color="primary"
+            mode="indeterminate"
+            [diameter]="40">
+          </mat-progress-spinner>
+        </p>
+      </mat-card>
+    </p>
+</div>
 
+<div class="board-card-container" *ngIf="!errorFetchingBoards">
   <p *ngFor="let board of boards">
-      <a [routerLink]="" (click)="goToBoard(board.hashId)">{{ board.name }}</a>
+      <mat-card class="board-card" (click)="goToBoard(board.hashId)">
+        {{ board.name }}
+      </mat-card>
   </p>
 </div>
 
 <div *ngIf="errorFetchingBoards">
   <p>
-    There was an error fetching your boards
+    <mat-card class="error-card" id="boardsErrorCard">
+      There was an error fetching your boards
+    </mat-card>
   </p>
 </div>

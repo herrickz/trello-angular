@@ -1,3 +1,9 @@
-<p>
-  board works!
+<div *ngIf="board != null">
+  <h2>{{ board.name }}</h2>
+</div>
+<div *ngIf="!boardLoadError && board == null">
+  <p>Loading board data...</p>
+</div>
+<p *ngIf="boardLoadError">
+  There was an error loading this board
 </p>

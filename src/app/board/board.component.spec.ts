@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core
 
 import { BoardComponent } from './board.component';
 import { Board } from '../models/board';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import { BoardService } from '../services/board.service';
 import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 import { delay } from 'rxjs/operators';
@@ -62,4 +62,16 @@ describe('BoardComponent', () => {
 
     expect(nativeElement.querySelector('h2').textContent.trim()).toEqual('the coolest board');
   }));
+
+  it('should display There was an error loading this board after boardService.getBoard returns with error', fakeAsync(() => {
+
+    const nativeElement: HTMLElement = fixture.nativeElement;
+
+    getBoardSpy.and.returnValue(throwError('Error').pipe(delay(1000)));
+    fixture.detectChanges();
+
+    expect(nativeElement.querySelector('p').textContent.trim()).toEqual('There was an error loading this board');
+
+  }));
+
 });

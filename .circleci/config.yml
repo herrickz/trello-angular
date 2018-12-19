@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  build:
+  test:
     working_directory: ~/my-project
     docker:
       - image: circleci/node:8-browsers
@@ -14,3 +14,14 @@ jobs:
           paths:
             - "node_modules"
       - run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
+  
+  build:
+    machine: true
+    steps:
+      - checkout
+      - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
+
+      - run: docker build -t herrickz/trello-frontend:$CIRCLE_BRANCH .
+
+      - run: docker push herrickz/trello-frontend:$CIRCLE_BRANCH
+  

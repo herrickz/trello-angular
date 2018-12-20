@@ -7,20 +7,27 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { BoardComponent } from './board/board.component';
 import { MaterialModule } from './material.module';
+import { CreateBoardDialogComponent } from './create-board-dialog/create-board-dialog.component';
+import { FormsModule } from '@angular/forms';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    BoardComponent
+    BoardComponent,
+    CreateBoardDialogComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    FormsModule,
     AppRoutingModule,
     HttpClientModule,
     MaterialModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  entryComponents: [ CreateBoardDialogComponent ],
+  bootstrap: [ AppComponent ]
 })
 export class AppModule { }

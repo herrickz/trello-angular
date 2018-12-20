@@ -1,0 +1,15 @@
+<div>
+    <div mat-dialog-content>
+        <mat-form-field>
+          <input matInput [(ngModel)]="boardName" placeholder="Add board title">
+        </mat-form-field>
+      </div>
+      <div class="create-board-action-buttons">
+        <button mat-raised-button (click)="onCancel()">Cancel</button>
+        <button mat-raised-button 
+          color="primary" 
+          style="margin-left: 1em;" 
+          (click)="onCreateBoard()" 
+          [disabled]="!canAddBoard()">Create Board</button>
+      </div>
+</div>

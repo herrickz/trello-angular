@@ -1,6 +1,7 @@
 
 import { MatButtonModule, MatCheckboxModule, MatCardModule, MatRippleModule, MatProgressSpinnerModule, MatDialogModule, MatFormFieldModule, MatInputModule } from '@angular/material';
 import { NgModule } from '@angular/core';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
     imports: [
@@ -11,7 +12,8 @@ import { NgModule } from '@angular/core';
         MatProgressSpinnerModule,
         MatDialogModule,
         MatFormFieldModule,
-        MatInputModule
+        MatInputModule,
+        DragDropModule
     ],
     exports: [
         MatButtonModule, 
@@ -21,7 +23,8 @@ import { NgModule } from '@angular/core';
         MatProgressSpinnerModule,
         MatDialogModule,
         MatFormFieldModule,
-        MatInputModule
+        MatInputModule,
+        DragDropModule
     ]
 })
 export class MaterialModule { }

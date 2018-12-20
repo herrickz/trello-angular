@@ -31,7 +31,8 @@ describe('CreateBoardDialogComponent Unit', () => {
     const testBoard: Board = {
       id: 1,
       name: 'test board',
-      hashId: 'hash'
+      hashId: 'hash',
+      lists: []
     }
     mockBoardService.createBoard.and.returnValue(of(testBoard));
 
@@ -45,7 +46,8 @@ describe('CreateBoardDialogComponent Unit', () => {
     const testBoard: Board = {
       id: 1,
       name: 'test board',
-      hashId: 'hash'
+      hashId: 'hash',
+      lists: []
     }
     mockBoardService.createBoard.and.returnValue(of(testBoard));
 

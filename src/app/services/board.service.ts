@@ -23,4 +23,7 @@ export class BoardService {
     return this.http.get<Board>(`${environment.apiUrl}/api/board/${hashId}/`)
   }
   
+  createBoard(boardName: string): Observable<Board> {
+    return this.http.post<Board>(`${environment.apiUrl}/api/board/`, { name: boardName });
+  }
 }

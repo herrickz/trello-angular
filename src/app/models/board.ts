@@ -1,4 +1,6 @@
 
 export interface Board {
-    name: string
+    id: number,
+    name: string,
+    hashId: string
 }

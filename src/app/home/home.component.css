@@ -12,6 +12,16 @@
 }
 
 .board-card:hover {
-    background-color: gray;
+    background-color: rgb(235, 231, 231);
     cursor: pointer;
+}
+
+.create-board-card {
+    display: flex;
+    align-items: center;
+    color: gray;
+}
+
+.center-text {
+    margin: 0 auto;
 }

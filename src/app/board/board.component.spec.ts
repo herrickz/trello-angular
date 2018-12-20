@@ -17,7 +17,9 @@ describe('BoardComponent', () => {
   beforeEach(async(() => {
     const mockBoardService = jasmine.createSpyObj('BoardService', ['getBoard']);
     const testBoard: Board = {
-        name: 'test board'
+      id: 1,
+      name: 'test board',
+      hashId: 'aaa'
     }
     getBoardSpy = mockBoardService.getBoard.and.returnValue(of(testBoard));
   

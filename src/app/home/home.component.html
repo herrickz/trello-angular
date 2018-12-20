@@ -19,11 +19,14 @@
 </div>
 
 <div class="board-card-container" *ngIf="!errorFetchingBoards">
-  <p *ngFor="let board of boards">
-      <mat-card class="board-card" (click)="goToBoard(board.hashId)">
-        {{ board.name }}
-      </mat-card>
-  </p>
+  <mat-card *ngFor="let board of boards" class="board-card" (click)="goToBoard(board.hashId)">
+    {{ board.name }}
+  </mat-card>
+  <mat-card class="board-card create-board-card" (click)="createBoard()">
+    <div class="center-text">
+        Create new board...
+    </div>
+  </mat-card>
 </div>
 
 <div *ngIf="errorFetchingBoards">

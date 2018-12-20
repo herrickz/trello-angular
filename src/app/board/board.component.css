@@ -1,0 +1,36 @@
+
+.list-container {
+    justify-content: start;
+    display: flex;
+    overflow-x: scroll;
+    height: 85vh;
+    flex-grow: 1;
+}
+
+.list {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    min-width: 15em;
+    margin: 1em 1em;
+    background-color: #dfe3e6;
+    align-self: flex-start;
+}
+
+.list-name {
+    font-size: 1em;
+    font-display: bold;
+}
+
+.card {
+    padding: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+.card:hover {
+    background-color: #cbced1;
+    cursor: pointer;
+}
+
+.card-container {
+    overflow-y: auto;
+}

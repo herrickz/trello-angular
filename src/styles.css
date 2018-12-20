@@ -1,1 +1,15 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+.error-card {
+    width: 20em;
+    margin: auto auto;
+}
+
+.loading-card {
+    width: 20em;
+    margin: auto auto;
+}
+
+.center {
+    margin: 0 auto;
+}

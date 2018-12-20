@@ -1,44 +1,74 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 
 import { HomeComponent } from './home.component';
 import { of, throwError } from 'rxjs';
+import { BoardService } from '../services/board.service';
+import { MaterialModule } from '../material.module';
 import { SimpleBoard } from '../models/simple-board';
+import { Router } from '@angular/router';
+import { delay } from 'rxjs/operators';
 
 describe('HomeComponent', () => {
+  let component: HomeComponent;
+  let fixture: ComponentFixture<HomeComponent>;
 
-  it('ngOnInit sets HomeComponent.boards returned from boardService.getBoards()', () => {
-
-    const boards: SimpleBoard[] = [ { name: "board1", id: 5, hashId: "hash" } ];
-    const boardServiceSpy = jasmine.createSpyObj('boardService', {
-      getBoards: of(boards)
-    });
+  let getBoardsSpy;
+  
+  beforeEach(async(() => {
+    const mockBoardService = jasmine.createSpyObj('BoardService', ['getBoards']);
+    getBoardsSpy = mockBoardService.getBoards.and.returnValue(of([]));
     
-    const homeComponent = new HomeComponent(boardServiceSpy, null);
+    TestBed.configureTestingModule({
+      declarations: [ HomeComponent ],
+      imports: [
+        MaterialModule
+      ],
+      providers: [
+          { provide: Router, useValue: { } },
+          { provide: BoardService, useValue: mockBoardService }
+      ]
+    })
+    .compileComponents();
+  }));
 
-    homeComponent.ngOnInit();
-
-    expect(homeComponent.boards).toEqual(boards);
-
+  beforeEach(() => {
+    fixture = TestBed.createComponent(HomeComponent);
+    component = fixture.componentInstance;
   });
 
-  it('ngOnInit sets errorFetchingBoards to true when boardService.getBoards() returns error', () => {
-    const boardServiceSpy = jasmine.createSpyObj('boardService', {
-      getBoards: throwError("error")
-    });
-    
-    const homeComponent = new HomeComponent(boardServiceSpy, null);
-
-    homeComponent.ngOnInit();
-
-    expect(homeComponent.errorFetchingBoards).toEqual(true);
+  it('should create', () => {
+    expect(component).toBeTruthy();
   });
 
-  it('goToBoard with abc123 calls router.navigate with abc123', () => {
-    const mockRouter = jasmine.createSpyObj('router', ['navigate']);
-    const homeComponent = new HomeComponent(null, mockRouter);
+  it('should display loading boards data... before boardService.getBoards returns', fakeAsync(() => {
 
-    homeComponent.goToBoard('abc123');
+    const nativeElement: HTMLElement = fixture.nativeElement;
+    const mockBoards: SimpleBoard[] = [
+        {
+            id: 1,
+            name: 'test board',
+            hashId: 'abc123'
+        }
+    ]
+    getBoardsSpy.and.returnValue(of(mockBoards).pipe(delay(1000)));
+    fixture.detectChanges();
 
-    expect(mockRouter.navigate).toHaveBeenCalledWith(['board', 'abc123']);
-  });
+    expect(nativeElement.querySelector('#boardsLoadingCard').textContent.trim()).toEqual('Loading boards data...');
+
+    tick(1000);
+
+    fixture.detectChanges();
+  }));
+
+  it('should display There was an error fetching your boards after boardService.getBoards returns error', fakeAsync(() => {
+
+    const nativeElement: HTMLElement = fixture.nativeElement;
+
+    getBoardsSpy.and.returnValue(throwError(''));
+    fixture.detectChanges();
+
+    expect(nativeElement.querySelector('#boardsErrorCard').textContent.trim()).toEqual('There was an error fetching your boards');
+
+  }));
+
 });

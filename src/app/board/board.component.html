@@ -2,8 +2,24 @@
   <h2>{{ board.name }}</h2>
 </div>
 <div *ngIf="!boardLoadError && board == null">
-  <p>Loading board data...</p>
+  <p>
+    <mat-card class="loading-card" id="boardLoadingCard">
+      <p>
+          Loading board data...
+      </p>
+      <p>
+        <mat-progress-spinner
+          class="center"
+          color="primary"
+          mode="indeterminate"
+          [diameter]="40">
+        </mat-progress-spinner>
+      </p>
+    </mat-card>
+  </p>
 </div>
 <p *ngIf="boardLoadError">
-  There was an error loading this board
+  <mat-card class="error-card" id="boardLoadErrorCard">
+    There was an error loading this board
+  </mat-card>
 </p>

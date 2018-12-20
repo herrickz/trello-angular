@@ -8,6 +8,7 @@ module.exports = function (config) {
     plugins: [
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
+      require('karma-junit-reporter'),
       require('karma-jasmine-html-reporter'),
       require('karma-coverage-istanbul-reporter'),
       require('@angular-devkit/build-angular/plugins/karma')
@@ -20,7 +21,14 @@ module.exports = function (config) {
       reports: ['html', 'lcovonly'],
       fixWebpackSourcePaths: true
     },
-    reporters: ['progress', 'kjhtml'],
+    reporters: ['progress', 'kjhtml', 'junit'],
+    junitReporter: {
+      outputDir: '../coverage-xml', // results will be saved as $outputDir/$browserName.xml
+      suite: '', // suite will become the package name attribute in xml testsuite element
+      nameFormatter: undefined, // function (browser, result) to customize the name attribute in xml testcase element
+      classNameFormatter: undefined, // function (browser, result) to customize the classname attribute in xml testcase element
+      properties: {} // key value pair of properties to add to the section of the report
+    },
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
@@ -32,6 +40,5 @@ module.exports = function (config) {
         flags: ['--no-sandbox']
       }
     },
-    singleRun: false
   });
 };

@@ -7,9 +7,9 @@
 }
 
 .list {
-  flex: 1 1 auto;
   overflow-y: auto;
   min-width: 15em;
+  width: 15em;
   margin: 1em 1em;
   background-color: #dfe3e6;
   align-self: flex-start;

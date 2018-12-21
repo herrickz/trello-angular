@@ -20,7 +20,7 @@
 
 <div class="board-card-container" *ngIf="!errorFetchingBoards">
   <mat-card *ngFor="let board of boards" class="board-card" (click)="goToBoard(board.hashId)">
-    {{ board.name }}
+    <h4>{{ board.name }}</h4>
   </mat-card>
   <mat-card class="board-card create-board-card" (click)="createBoard()">
     <div class="center-text">

@@ -9,6 +9,7 @@
     width: 10em;
     height: 3em;
     margin: 1em;
+    font-size: 1em;
 }
 
 .board-card:hover {

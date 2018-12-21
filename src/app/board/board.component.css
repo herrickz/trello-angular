@@ -7,12 +7,18 @@
 }
 
 .list {
-  overflow-y: auto;
   min-width: 15em;
+  max-height: 80vh;
   width: 15em;
   margin: 1em 1em;
   background-color: #dfe3e6;
   align-self: flex-start;
+}
+
+.card-container {
+  overflow-y: auto;
+  min-height: 1em;
+  max-height: 70vh;
 }
 
 .list-name {
@@ -28,11 +34,6 @@
 .card:hover {
   background-color: #cbced1;
   cursor: pointer;
-}
-
-.card-container {
-  overflow-y: auto;
-  min-height: 1em;
 }
 
 .cdk-drag-preview {

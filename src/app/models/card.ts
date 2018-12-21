@@ -1,6 +1,7 @@
 
 export interface Card {
     id: number,
-    name: string,
-    trelloList: number
+    name: String,
+    trelloList: number,
+    order: number
 }

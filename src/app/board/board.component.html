@@ -1,9 +1,15 @@
 <div *ngIf="board != null">
-  <h2>{{ board.name }}</h2>
+  <mat-toolbar class="sub-nav" color="primary">
+      <mat-toolbar-row>
+          <h2>{{ board.name }}</h2>
+      </mat-toolbar-row>
+  </mat-toolbar>
+
   <div class="list-container" cdkDropListGroup> 
     <mat-card *ngFor="let list of board.lists" class="list">
       <h2 class="list-name">{{ list.name }}</h2>
-      <div 
+      <div
+        #cardContainer
         cdkDropList
         [cdkDropListData]="list"
         (cdkDropListDropped)="drop($event)"
@@ -11,7 +17,27 @@
         <mat-card *ngFor="let card of list.cards" class="card" cdkDrag>
           {{ card.name }}
         </mat-card>
+        <create-card [trelloList]="list.id" (onCardCreated)="onCardCreated($event)"></create-card>
       </div>
+    </mat-card>
+    <mat-card class="list create-list" *ngIf="!addingList" (click)="onAddAnotherList()">
+        <mat-icon style="margin-right: 0.3em;">add</mat-icon>
+        Add another list
+    </mat-card>
+    <mat-card class="list" *ngIf="addingList">
+        <mat-form-field>
+          <input matInput #addListInput [(ngModel)]="addingListName" placeholder="Add list title">
+        </mat-form-field>
+        <div>
+            <button mat-icon-button (click)="onCancelAddList()">
+              <mat-icon>clear</mat-icon>
+            </button>
+            <button mat-raised-button 
+              color="primary" 
+              style="margin-left: 1em;" 
+              (click)="onCreateList()" 
+              [disabled]="!canAddList()">Create List</button>
+        </div>
     </mat-card>
   </div>
 </div>

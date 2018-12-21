@@ -16,14 +16,14 @@ export class BoardService {
   ) { }
 
   getBoards(): Observable<SimpleBoard[]> {
-    return this.http.get<SimpleBoard[]>(`${environment.apiUrl}/api/board/`);
+    return this.http.get<SimpleBoard[]>(`${environment.apiUrl}/board/`);
   }
 
   getBoard(hashId: string): Observable<Board> {
-    return this.http.get<Board>(`${environment.apiUrl}/api/board/${hashId}/`)
+    return this.http.get<Board>(`${environment.apiUrl}/board/${hashId}/`);
   }
   
   createBoard(boardName: string): Observable<Board> {
-    return this.http.post<Board>(`${environment.apiUrl}/api/board/`, { name: boardName });
+    return this.http.post<Board>(`${environment.apiUrl}/board/`, { name: boardName });
   }
 }

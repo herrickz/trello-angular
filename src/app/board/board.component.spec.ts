@@ -19,7 +19,8 @@ describe('BoardComponent', () => {
     const testBoard: Board = {
       id: 1,
       name: 'test board',
-      hashId: 'aaa'
+      hashId: 'aaa',
+      lists: []
     }
     getBoardSpy = mockBoardService.getBoard.and.returnValue(of(testBoard));
   

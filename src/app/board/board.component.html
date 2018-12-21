@@ -1,6 +1,21 @@
 <div *ngIf="board != null">
   <h2>{{ board.name }}</h2>
+  <div class="list-container" cdkDropListGroup> 
+    <mat-card *ngFor="let list of board.lists" class="list">
+      <h2 class="list-name">{{ list.name }}</h2>
+      <div 
+        cdkDropList
+        [cdkDropListData]="list"
+        (cdkDropListDropped)="drop($event)"
+        class="card-container">
+        <mat-card *ngFor="let card of list.cards" class="card" cdkDrag>
+          {{ card.name }}
+        </mat-card>
+      </div>
+    </mat-card>
+  </div>
 </div>
+
 <div *ngIf="!boardLoadError && board == null">
   <p>
     <mat-card class="loading-card" id="boardLoadingCard">
@@ -18,6 +33,7 @@
     </mat-card>
   </p>
 </div>
+
 <p *ngIf="boardLoadError">
   <mat-card class="error-card" id="boardLoadErrorCard">
     There was an error loading this board

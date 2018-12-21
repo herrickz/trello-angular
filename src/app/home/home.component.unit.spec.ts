@@ -89,7 +89,8 @@ describe('HomeComponent Unit', () => {
     const board: Board = {
       id: 1,
       name: 'returned board',
-      hashId: 'testhash'
+      hashId: 'testhash',
+      lists: []
     }
     mockDialogRef.afterClosed.and.returnValue(of({ didCreateBoard: true, board: board }));
     

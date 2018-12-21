@@ -4,6 +4,7 @@ import { BoardService } from '../services/board.service';
 import { Board } from '../models/board';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-board',
@@ -14,6 +15,8 @@ export class BoardComponent implements OnInit {
 
   board: Board = null;
   boardLoadError = false;
+
+  listOfLists: string[][] = [];
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -27,7 +30,19 @@ export class BoardComponent implements OnInit {
     }, error => {
       this.boardLoadError = true;
     });
+  }
 
+  drop(event) {
+
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data.cards, event.previousIndex, event.currentIndex);
+    } 
+    else {
+      transferArrayItem(event.previousContainer.data.cards,
+                      event.container.data.cards,
+                      event.previousIndex,
+                      event.currentIndex);
+  }
   }
 
 }

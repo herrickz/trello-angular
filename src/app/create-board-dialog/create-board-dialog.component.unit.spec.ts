@@ -17,56 +17,64 @@ describe('CreateBoardDialogComponent Unit', () => {
     createBoardDialogComponent = new CreateBoardDialogComponent(mockDialogReference, mockBoardService);
   });
 
-  it('onCancel should call dialogReference.close With didCreateBoard false', () => {
+  describe('onCancel', () => {
+    it('should call dialogReference.close With didCreateBoard false', () => {
     
-    createBoardDialogComponent.onCancel();
-
-    expect(mockDialogReference.close).toHaveBeenCalledWith({ didCreateBoard: false });
+      createBoardDialogComponent.onCancel();
+  
+      expect(mockDialogReference.close).toHaveBeenCalledWith({ didCreateBoard: false });
+    });
   });
 
-  it('onCreateBoard should call boardService.createBoard with "test board" when boardName is "test board"', () => {
+  describe('onCreateBoard', () => {
 
-    createBoardDialogComponent.boardName = 'test board'; 
+    it('should call boardService.createBoard with "test board" when boardName is "test board"', () => {
 
-    const testBoard: Board = {
-      id: 1,
-      name: 'test board',
-      hashId: 'hash',
-      lists: []
-    }
-    mockBoardService.createBoard.and.returnValue(of(testBoard));
-
-    createBoardDialogComponent.onCreateBoard();
-
-    expect(mockBoardService.createBoard).toHaveBeenCalledWith('test board');
+      createBoardDialogComponent.boardName = 'test board'; 
+  
+      const testBoard: Board = {
+        id: 1,
+        name: 'test board',
+        hashId: 'hash',
+        lists: []
+      }
+      mockBoardService.createBoard.and.returnValue(of(testBoard));
+  
+      createBoardDialogComponent.onCreateBoard();
+  
+      expect(mockBoardService.createBoard).toHaveBeenCalledWith('test board');
+    });
+  
+    it('should calls dialogReference.close with didCreateBoard true and board returned from boardService.createBoard', () => {
+      
+      const testBoard: Board = {
+        id: 1,
+        name: 'test board',
+        hashId: 'hash',
+        lists: []
+      }
+      mockBoardService.createBoard.and.returnValue(of(testBoard));
+  
+      createBoardDialogComponent.onCreateBoard();
+  
+      expect(mockDialogReference.close).toHaveBeenCalledWith({ didCreateBoard: true, board: testBoard });
+    });
+  
   });
 
-  it('onCreateBoard should calls dialogReference.close with didCreateBoard true and board returned from boardService.createBoard', () => {
-    
-    const testBoard: Board = {
-      id: 1,
-      name: 'test board',
-      hashId: 'hash',
-      lists: []
-    }
-    mockBoardService.createBoard.and.returnValue(of(testBoard));
+  describe('canAddBoard', () => {
+    it('returns false when boardName is empty string', () => {
 
-    createBoardDialogComponent.onCreateBoard();
-
-    expect(mockDialogReference.close).toHaveBeenCalledWith({ didCreateBoard: true, board: testBoard });
-  });
-
-  it('canAddBoard returns false when boardName is empty string', () => {
-
-    createBoardDialogComponent.boardName = '';
-
-    expect(createBoardDialogComponent.canAddBoard()).toEqual(false);
-  });
-
-  it('canAddBoard returns true when boardName is not empty string', () => {
-
-    createBoardDialogComponent.boardName = 'I\'m not empty';
-
-    expect(createBoardDialogComponent.canAddBoard()).toEqual(true);
+      createBoardDialogComponent.boardName = '';
+  
+      expect(createBoardDialogComponent.canAddBoard()).toEqual(false);
+    });
+  
+    it('returns true when boardName is not empty string', () => {
+  
+      createBoardDialogComponent.boardName = 'I\'m not empty';
+  
+      expect(createBoardDialogComponent.canAddBoard()).toEqual(true);
+    });
   });
 });

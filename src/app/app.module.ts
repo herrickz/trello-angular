@@ -10,13 +10,15 @@ import { MaterialModule } from './material.module';
 import { CreateBoardDialogComponent } from './create-board-dialog/create-board-dialog.component';
 import { FormsModule } from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { CreateCardComponent } from './create-card/create-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     BoardComponent,
-    CreateBoardDialogComponent
+    CreateBoardDialogComponent,
+    CreateCardComponent
   ],
   imports: [
     BrowserModule,

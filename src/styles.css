@@ -13,3 +13,12 @@
 .center {
     margin: 0 auto;
 }
+
+.card {
+    padding: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+mat-card.card {
+    padding: 8px !important;
+}

@@ -4,6 +4,7 @@
   overflow-x: scroll;
   height: 85vh;
   flex-grow: 1;
+  align-items: flex-start;
 }
 
 .list {
@@ -12,7 +13,6 @@
   width: 15em;
   margin: 1em 1em;
   background-color: #dfe3e6;
-  align-self: flex-start;
 }
 
 .card-container {
@@ -24,11 +24,6 @@
 .list-name {
   font-size: 1em;
   font-display: bold;
-}
-
-.card {
-  padding: 0.5em;
-  margin-bottom: 0.5em;
 }
 
 .card:hover {
@@ -49,4 +44,21 @@
 
 .cdk-drag-animating {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.create-list {
+  background-color: rgba(0,0,0,.12);
+  cursor: pointer;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  margin-right: 1em;
+}
+
+.create-list:hover {
+  background-color: rgba(0,0,0,.24);
+}
+
+.sub-nav {
+  background-color: rgba(0,0,0,.24);
 }

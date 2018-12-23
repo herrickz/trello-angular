@@ -7,6 +7,7 @@ import { MaterialModule } from '../material.module';
 import { SimpleBoard } from '../models/simple-board';
 import { Router } from '@angular/router';
 import { delay } from 'rxjs/operators';
+import { MatDialog } from '@angular/material';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -25,7 +26,8 @@ describe('HomeComponent', () => {
       ],
       providers: [
           { provide: Router, useValue: { } },
-          { provide: BoardService, useValue: mockBoardService }
+          { provide: BoardService, useValue: mockBoardService },
+          { provide: MatDialog, useValue: { } }
       ]
     })
     .compileComponents();

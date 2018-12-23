@@ -7,15 +7,24 @@ import { BoardService } from '../services/board.service';
 import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 import { delay } from 'rxjs/operators';
 import { MaterialModule } from '../material.module';
+import { CardService } from '../services/card.service';
+import { FormsModule } from '@angular/forms';
+import { ListService } from '../services/list.service';
+import { CreateCardComponent } from '../create-card/create-card.component';
 
 describe('BoardComponent', () => {
   let component: BoardComponent;
   let fixture: ComponentFixture<BoardComponent>;
 
   let getBoardSpy;
+  let mockListService;
+  let mockCardService;
   
   beforeEach(async(() => {
     const mockBoardService = jasmine.createSpyObj('BoardService', ['getBoard']);
+    const mockListService = jasmine.createSpyObj('ListService', ['createList']);
+    const mockCardService = jasmine.createSpyObj('CardService', ['updateCardOrder']);
+
     const testBoard: Board = {
       id: 1,
       name: 'test board',
@@ -33,13 +42,16 @@ describe('BoardComponent', () => {
     }
     
     TestBed.configureTestingModule({
-      declarations: [ BoardComponent ],
+      declarations: [ BoardComponent, CreateCardComponent ],
       imports: [
-        MaterialModule
+        MaterialModule,
+        FormsModule
       ],
       providers: [
           { provide: ActivatedRoute, useValue: mockActivatedRoute },
-          { provide: BoardService, useValue: mockBoardService }
+          { provide: BoardService, useValue: mockBoardService },
+          { provide: ListService, useValue: mockListService },
+          { provide: CardService, useValue: mockCardService }
       ]
     })
     .compileComponents();
@@ -57,8 +69,14 @@ describe('BoardComponent', () => {
   it('should display loading board data... before boardService.getBoard returns', fakeAsync(() => {
 
     const nativeElement: HTMLElement = fixture.nativeElement;
+    const testBoard: Board = {
+      id: 1,
+      name: 'the coolest board',
+      hashId: 'abc123',
+      lists: []
+    };
 
-    getBoardSpy.and.returnValue(of({name: 'the coolest board'}).pipe(delay(1000)));
+    getBoardSpy.and.returnValue(of(testBoard).pipe(delay(1000)));
     fixture.detectChanges();
 
     expect(nativeElement.querySelector('#boardLoadingCard').textContent.trim()).toEqual('Loading board data...');

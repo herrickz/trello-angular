@@ -16,6 +16,9 @@ jobs:
       - run: npm run test -- --no-watch --no-progress --code-coverage --browsers=ChromeHeadlessCI
       - store_test_results:
           path: coverage-xml
+      - store_artifacts:
+          path: coverage
+          destination: coverage
 
   build_and_push_docker_container:
     machine: true

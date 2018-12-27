@@ -1,38 +1,46 @@
-<h1>Boards</h1>
+<div class="home-ui">
 
-<div *ngIf="!errorFetchingBoards && boards == null">
-    <p>
-      <mat-card class="loading-card" id="boardsLoadingCard">
-        <p>
-            Loading boards data...
-        </p>
-        <p>
-          <mat-progress-spinner
-            class="center"
-            color="primary"
-            mode="indeterminate"
-            [diameter]="40">
-          </mat-progress-spinner>
-        </p>
-      </mat-card>
-    </p>
-</div>
-
-<div class="board-card-container" *ngIf="!errorFetchingBoards">
-  <mat-card *ngFor="let board of boards" class="board-card" (click)="goToBoard(board.hashId)">
-    <h4>{{ board.name }}</h4>
-  </mat-card>
-  <mat-card class="board-card create-board-card" (click)="createBoard()">
-    <div class="center-text">
-        Create new board...
+    <navbar></navbar>
+    <div>
+      <h1>Boards</h1>
     </div>
-  </mat-card>
-</div>
 
-<div *ngIf="errorFetchingBoards">
-  <p>
-    <mat-card class="error-card" id="boardsErrorCard">
-      There was an error fetching your boards
-    </mat-card>
-  </p>
+    <div *ngIf="!errorFetchingBoards && boards == null">
+        <p>
+          <mat-card class="loading-card" id="boardsLoadingCard">
+            <p>
+                Loading boards data...
+            </p>
+            <p>
+              <mat-progress-spinner
+                class="center"
+                color="primary"
+                mode="indeterminate"
+                [diameter]="40">
+              </mat-progress-spinner>
+            </p>
+          </mat-card>
+        </p>
+    </div>
+    
+    <div>
+      <div class="board-card-container" *ngIf="!errorFetchingBoards">
+        <mat-card *ngFor="let board of boards" class="board-card" (click)="goToBoard(board.hashId)">
+          <h4>{{ board.name }}</h4>
+        </mat-card>
+        <mat-card class="board-card create-board-card" (click)="createBoard()">
+          <div class="center-text">
+              Create new board...
+          </div>
+        </mat-card>
+      </div>
+    </div>
+    
+    <div *ngIf="errorFetchingBoards">
+      <p>
+        <mat-card class="error-card" id="boardsErrorCard">
+          There was an error fetching your boards
+        </mat-card>
+      </p>
+    </div>
 </div>

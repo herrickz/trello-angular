@@ -1,0 +1,139 @@
+.list {
+  width: 300px;
+  min-height: 1em;
+  height: calc(100% - 10px - 24px);
+}
+.list > * {
+  background-color: #e2e4e6;
+  color: #333;
+  padding: 0 10px;
+}
+.list header {
+  line-height: 36px;
+  font-size: 16px;
+  font-weight: bold;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.add-card-footer {
+  line-height: 36px;
+  min-height: 1em;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  padding: 8px;
+  box-shadow: none;
+}
+
+.add-card-items {
+  color: #6b808c;
+  display: flex;
+  align-items: center;
+}
+
+.add-card-items:hover {
+  color: #17394d;
+}
+
+.add-card-hover:hover {
+  background-color: rgb(172, 172, 172);
+  color: #17394d;
+  cursor: pointer;
+}
+
+.list .card-container {
+  list-style: none;
+  margin: 0;
+  max-height: calc(100% - 36px - 36px);
+  overflow-y: auto;
+}
+
+.card-container::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 16px;
+}
+
+.card-container::-webkit-scrollbar {
+  width: 14px;
+}
+
+.card-container::-webkit-scrollbar-thumb {
+  height: 8px;
+  border: 2px solid rgba(0, 0, 0, 0);
+  background-clip: padding-box;
+  -webkit-border-radius: 7px;
+  border-radius: 7px;
+  background-color: rgba(0, 0, 0, 0.15);
+  -webkit-box-shadow: inset -1px -1px 0px rgba(0, 0, 0, 0.05),
+    inset 1px 1px 0px rgba(0, 0, 0, 0.05);
+  box-shadow: inset -1px -1px 0px rgba(0, 0, 0, 0.05),
+    inset 1px 1px 0px rgba(0, 0, 0, 0.05);
+}
+
+.card-container::-webkit-scrollbar-button {
+  width: 0;
+  height: 0;
+  display: none;
+}
+
+.card-container::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+
+.underline-on-hover:hover {
+  text-decoration: underline;
+}
+
+.add-card-text-area {
+  overflow: hidden;
+  overflow-wrap: break-word;
+  resize: none;
+  height: 54px;
+  background: none;
+  border: none;
+  box-shadow: none;
+  height: auto;
+  margin-bottom: 4px;
+  max-height: 162px;
+  min-height: 54px;
+  overflow-y: auto;
+  padding: 0;
+  width: 100%;
+  font-size: medium;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  border-radius: 3px;
+  border: none;
+  overflow: auto;
+  outline: none;
+
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+
+  resize: none;
+}
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  background-color: white !important;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+    0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.card-container {
+  min-height: 1em;
+}
+
+.card:hover {
+  background-color: #cbced1;
+  cursor: pointer;
+}

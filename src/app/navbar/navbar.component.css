@@ -1,0 +1,43 @@
+.navbar {
+  padding-left: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.35);
+  height: 40px;
+}
+
+.left-icons {
+  display: flex;
+  flex-direction: row;
+}
+
+.trello-navbar-icon {
+  padding: 0 6px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.trello-icon {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  padding: 4px;
+  border-radius: 4px;
+  background: hsla(0, 0%, 100%, 0.3);
+}
+
+.trello-icon:hover {
+  background: hsla(0, 0%, 100%, 0.2);
+  cursor: pointer;
+}
+
+.trello-icon:not(:first-child) {
+  margin-left: 6px;
+}
+
+.trello-icon:last-child {
+    margin-right: 6px;
+}

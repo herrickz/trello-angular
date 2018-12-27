@@ -1,0 +1,27 @@
+<div class="list">
+  <header>{{ list.name }}</header>
+  <div 
+    #cardContainer
+    class="card-container"
+    cdkDropList
+    [cdkDropListData]="list"
+    (cdkDropListDropped)="drop($event)">
+    <mat-card class="card" *ngFor="let card of list.cards" cdkDrag>{{ card.name }}</mat-card>
+    
+    <div *ngIf="isCreatingCard">
+      <mat-card class="card">
+          <textarea #cardNameTextArea (keyup.enter)="onAddCard()" [(ngModel)]="cardName" class="add-card-text-area" placeholder="Enter a title for this card…"></textarea>
+      </mat-card>
+      <button mat-raised-button color="primary" (click)="onAddCard()" [disabled]="!canAddCard()">Add Card</button>
+      <button mat-icon-button (click)="onCancelCreateCard()">
+        <mat-icon>clear</mat-icon>
+      </button>
+    </div>
+  </div>
+  <div class="add-card-footer" [ngClass]="{ 'add-card-hover': !isCreatingCard }" (click)="onCreateCard()">
+    <div *ngIf="!isCreatingCard" class="add-card-items">
+        <mat-icon class="create-card-add-icon">add</mat-icon>
+        <span class="underline-on-hover">Add another card</span>
+    </div>
+  </div>
+</div>

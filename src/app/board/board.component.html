@@ -1,67 +1,61 @@
-<div *ngIf="board != null">
-  <mat-toolbar class="sub-nav" color="primary">
-      <mat-toolbar-row>
-          <h2>{{ board.name }}</h2>
-      </mat-toolbar-row>
-  </mat-toolbar>
-
-  <div class="list-container" cdkDropListGroup> 
-    <mat-card *ngFor="let list of board.lists" class="list">
-      <h2 class="list-name">{{ list.name }}</h2>
-      <div
-        #cardContainer
-        cdkDropList
-        [cdkDropListData]="list"
-        (cdkDropListDropped)="drop($event)"
-        class="card-container">
-        <mat-card *ngFor="let card of list.cards" class="card" cdkDrag>
-          {{ card.name }}
-        </mat-card>
-        <create-card [trelloList]="list.id" (onCardCreated)="onCardCreated($event)"></create-card>
+<div class="board-ui">
+  
+    <navbar></navbar>
+  
+    <div class="board-name" *ngIf="board != null">
+      <h2 id="boardName" class="board">{{ board.name }}</h2>
+    </div>
+  
+    <div class="lists" *ngIf="board != null" cdkDropListGroup>
+      <list *ngFor="let list of board.lists" [list]="list" (onCardDropped)="drop($event)"></list>
+  
+      <div class="list" #listContainer>
+          <mat-card class="create-list" *ngIf="!addingList" (click)="onAddAnotherList()">
+              <mat-icon style="margin-right: 0.3em;">add</mat-icon>
+              Add another list
+          </mat-card>
+          <mat-card *ngIf="addingList">
+              <mat-form-field>
+                <input matInput #addListInput (keyup.enter)="onCreateList()" [(ngModel)]="addingListName" placeholder="Add list title">
+              </mat-form-field>
+              <div>
+                  <button mat-icon-button (click)="onCancelAddList()">
+                    <mat-icon>clear</mat-icon>
+                  </button>
+                  <button mat-raised-button 
+                    color="primary" 
+                    style="margin-left: 1em;" 
+                    (click)="onCreateList()" 
+                    [disabled]="!canAddList()">Create List</button>
+              </div>
+          </mat-card>
       </div>
-    </mat-card>
-    <mat-card class="list create-list" *ngIf="!addingList" (click)="onAddAnotherList()">
-        <mat-icon style="margin-right: 0.3em;">add</mat-icon>
-        Add another list
-    </mat-card>
-    <mat-card class="list" *ngIf="addingList">
-        <mat-form-field>
-          <input matInput #addListInput [(ngModel)]="addingListName" placeholder="Add list title">
-        </mat-form-field>
-        <div>
-            <button mat-icon-button (click)="onCancelAddList()">
-              <mat-icon>clear</mat-icon>
-            </button>
-            <button mat-raised-button 
-              color="primary" 
-              style="margin-left: 1em;" 
-              (click)="onCreateList()" 
-              [disabled]="!canAddList()">Create List</button>
-        </div>
-    </mat-card>
+      
+    </div>
+
+    <div *ngIf="!boardLoadError && board == null">
+        <p>
+          <mat-card class="loading-card" id="boardLoadingCard">
+            <p>
+                Loading board data...
+            </p>
+            <p>
+              <mat-progress-spinner
+                class="center"
+                color="primary"
+                mode="indeterminate"
+                [diameter]="40">
+              </mat-progress-spinner>
+            </p>
+          </mat-card>
+        </p>
+      </div>
+      
+      <p *ngIf="boardLoadError">
+        <mat-card class="error-card" id="boardLoadErrorCard">
+          There was an error loading this board
+        </mat-card>
+      </p>
+  
   </div>
-</div>
-
-<div *ngIf="!boardLoadError && board == null">
-  <p>
-    <mat-card class="loading-card" id="boardLoadingCard">
-      <p>
-          Loading board data...
-      </p>
-      <p>
-        <mat-progress-spinner
-          class="center"
-          color="primary"
-          mode="indeterminate"
-          [diameter]="40">
-        </mat-progress-spinner>
-      </p>
-    </mat-card>
-  </p>
-</div>
-
-<p *ngIf="boardLoadError">
-  <mat-card class="error-card" id="boardLoadErrorCard">
-    There was an error loading this board
-  </mat-card>
-</p>
+  

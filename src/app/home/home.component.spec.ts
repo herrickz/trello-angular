@@ -8,6 +8,7 @@ import { SimpleBoard } from '../models/simple-board';
 import { Router } from '@angular/router';
 import { delay } from 'rxjs/operators';
 import { MatDialog } from '@angular/material';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -20,7 +21,10 @@ describe('HomeComponent', () => {
     getBoardsSpy = mockBoardService.getBoards.and.returnValue(of([]));
     
     TestBed.configureTestingModule({
-      declarations: [ HomeComponent ],
+      declarations: [ 
+        HomeComponent,
+        NavbarComponent
+      ],
       imports: [
         MaterialModule
       ],

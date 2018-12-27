@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, Input, ViewChildren, QueryList } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BoardService } from '../services/board.service';
 import { Board } from '../models/board';
@@ -9,6 +9,7 @@ import { CardService } from '../services/card.service';
 import { ListService } from '../services/list.service';
 import { SimpleCard } from '../models/simple-card';
 import { Card } from '../models/card';
+import { List } from '../models/list';
 
 @Component({
   selector: 'app-board',
@@ -20,7 +21,12 @@ export class BoardComponent implements OnInit {
   board: Board = null;
   boardLoadError = false;
 
+  @Input('index') index: number;
+
   @ViewChild('addListInput') addListInput: ElementRef;
+  @ViewChild('listContainer') listContainer: ElementRef;
+
+  @ViewChildren('cardContainer') containers: QueryList<ElementRef>;
   
   addingList: Boolean = false;
   addingListName: String = '';
@@ -34,6 +40,7 @@ export class BoardComponent implements OnInit {
 
   ngOnInit() {
     const hashId: string = this.activatedRoute.snapshot.params['boardId'];
+
     this.boardService.getBoard(hashId).subscribe(board => {
       
       for(let list of board.lists) {
@@ -44,18 +51,23 @@ export class BoardComponent implements OnInit {
       this.boardLoadError = true;
     });
   }
-
+  
   onAddAnotherList() {
     this.addingList = true;
     setTimeout(() => { this.addListInput.nativeElement.focus(); }, 100);
   }
 
   onCreateList() {
-    this.listService.createList(this.addingListName, this.board.id).subscribe(list => {
-      this.board.lists.push(list);
-      this.addingListName = '';
-      setTimeout(() => { this.addListInput.nativeElement.focus(); }, 100);
-    })
+    if(this.canAddList()) {
+      this.listService.createList(this.addingListName, this.board.id).subscribe(list => {
+        this.board.lists.push(list);
+        this.addingListName = '';
+        setTimeout(() => { 
+          this.listContainer.nativeElement.scrollLeft = 100000; 
+          this.addListInput.nativeElement.focus(); 
+        }, 100);
+      });
+    }
   }
 
   canAddList(): Boolean {

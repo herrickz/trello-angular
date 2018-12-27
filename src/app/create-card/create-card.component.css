@@ -6,6 +6,8 @@
     display: flex;
     align-items: center;
     padding: 8px;
+    box-shadow: none;
+    margin-top: 1em;
 }
 
 .create-card:hover {

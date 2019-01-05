@@ -10,7 +10,6 @@ import { MaterialModule } from '../material.module';
 import { CardService } from '../services/card.service';
 import { FormsModule } from '@angular/forms';
 import { ListService } from '../services/list.service';
-import { CreateCardComponent } from '../create-card/create-card.component';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { ListComponent } from '../list/list.component';
 
@@ -46,7 +45,6 @@ describe('BoardComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ 
         BoardComponent, 
-        CreateCardComponent,
         NavbarComponent,
         ListComponent
       ],

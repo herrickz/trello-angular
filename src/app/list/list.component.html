@@ -9,7 +9,7 @@
     <mat-card class="card" *ngFor="let card of list.cards" cdkDrag>{{ card.name }}</mat-card>
     
     <div *ngIf="isCreatingCard">
-      <mat-card class="card">
+      <mat-card class="create-card">
           <textarea #cardNameTextArea (keyup.enter)="onAddCard()" [(ngModel)]="cardName" class="add-card-text-area" placeholder="Enter a title for this card…"></textarea>
       </mat-card>
       <button mat-raised-button color="primary" (click)="onAddCard()" [disabled]="!canAddCard()">Add Card</button>

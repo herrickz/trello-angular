@@ -10,7 +10,6 @@ import { MaterialModule } from './material.module';
 import { CreateBoardDialogComponent } from './create-board-dialog/create-board-dialog.component';
 import { FormsModule } from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { CreateCardComponent } from './create-card/create-card.component';
 import { ListComponent } from './list/list.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
@@ -21,7 +20,6 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
     HomeComponent,
     BoardComponent,
     CreateBoardDialogComponent,
-    CreateCardComponent,
     ListComponent,
     NavbarComponent
   ],

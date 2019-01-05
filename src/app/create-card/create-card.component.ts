@@ -41,6 +41,7 @@ export class CreateCardComponent implements OnInit {
 
   onCancelCreateCard() {
     this.isCreatingCard = false;
+    this.cardName = '';
   }
 
   onAddCard() {

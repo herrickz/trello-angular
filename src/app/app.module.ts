@@ -11,6 +11,9 @@ import { CreateBoardDialogComponent } from './create-board-dialog/create-board-d
 import { FormsModule } from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { CreateCardComponent } from './create-card/create-card.component';
+import { ListComponent } from './list/list.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,9 @@ import { CreateCardComponent } from './create-card/create-card.component';
     HomeComponent,
     BoardComponent,
     CreateBoardDialogComponent,
-    CreateCardComponent
+    CreateCardComponent,
+    ListComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +33,9 @@ import { CreateCardComponent } from './create-card/create-card.component';
     HttpClientModule,
     MaterialModule
   ],
-  providers: [],
+  providers: [
+   { provide: LocationStrategy, useClass: HashLocationStrategy}
+  ],
   entryComponents: [ CreateBoardDialogComponent ],
   bootstrap: [ AppComponent ]
 })

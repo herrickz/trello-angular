@@ -11,6 +11,8 @@ import { CardService } from '../services/card.service';
 import { FormsModule } from '@angular/forms';
 import { ListService } from '../services/list.service';
 import { CreateCardComponent } from '../create-card/create-card.component';
+import { NavbarComponent } from '../navbar/navbar.component';
+import { ListComponent } from '../list/list.component';
 
 describe('BoardComponent', () => {
   let component: BoardComponent;
@@ -42,7 +44,12 @@ describe('BoardComponent', () => {
     }
     
     TestBed.configureTestingModule({
-      declarations: [ BoardComponent, CreateCardComponent ],
+      declarations: [ 
+        BoardComponent, 
+        CreateCardComponent,
+        NavbarComponent,
+        ListComponent
+      ],
       imports: [
         MaterialModule,
         FormsModule
@@ -85,7 +92,7 @@ describe('BoardComponent', () => {
 
     fixture.detectChanges();
 
-    expect(nativeElement.querySelector('h2').textContent.trim()).toEqual('the coolest board');
+    expect(nativeElement.querySelector('#boardName').textContent.trim()).toEqual('the coolest board');
   }));
 
   it('should display There was an error loading this board after boardService.getBoard returns with error', fakeAsync(() => {
@@ -97,6 +104,9 @@ describe('BoardComponent', () => {
 
     expect(nativeElement.querySelector('#boardLoadErrorCard').textContent.trim()).toEqual('There was an error loading this board');
 
+    tick(1000);
+
+    fixture.detectChanges();
   }));
 
 });

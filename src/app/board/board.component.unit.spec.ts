@@ -8,6 +8,7 @@ import { Board } from '../models/board';
 import { List } from '../models/list';
 import { SimpleCard } from '../models/simple-card';
 import { Card } from '../models/card';
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
 
 describe('BoardComponent Unit', () => {
 
@@ -16,6 +17,7 @@ describe('BoardComponent Unit', () => {
   let mockListService;
   let mockCardService;
   let mockAddListInputNativeElement;
+  let mockListContainerNativeElement;
 
   let boardComponent: BoardComponent;
 
@@ -25,11 +27,16 @@ describe('BoardComponent Unit', () => {
     mockListService = jasmine.createSpyObj('ListService', ['createList']);
     mockCardService = jasmine.createSpyObj('CardService', ['updateCardOrder']);
     mockAddListInputNativeElement = jasmine.createSpyObj('NativeElement', ['focus']);
+    mockListContainerNativeElement = jasmine.createSpyObj('NativeElement', ['focus']);
+
+    mockListContainerNativeElement.scrollLeft = 0;
 
     mockCardService.updateCardOrder.and.returnValue(of({}));
 
     boardComponent = new BoardComponent(mockActivatedRoute, mockBoardService, mockListService, mockCardService);
     boardComponent.addListInput = { nativeElement: mockAddListInputNativeElement };
+    boardComponent.listContainer = { nativeElement: mockListContainerNativeElement };
+
   });
 
   describe('ngOnInit', () => {
@@ -149,7 +156,12 @@ describe('BoardComponent Unit', () => {
       const card2 = {id: 2, name: 'card', order: 1 };
       const card3 = { id: 3, name: 'card', order: 2 };
 
-      const container = { data: { cards: [card1, card2, card3] } };
+      const container = { 
+        data: {
+
+          cards: [card1, card2, card3] 
+        } 
+      };
       
       const event = {
         previousContainer: container,

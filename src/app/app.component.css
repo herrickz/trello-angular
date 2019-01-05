@@ -11,6 +11,6 @@
 }
 
 .app {
-    /* background-color: #007ac5; */
     background-color: green;
+    min-height: 100%;
 }

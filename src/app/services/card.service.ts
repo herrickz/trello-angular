@@ -14,6 +14,10 @@ export class CardService {
     private http: HttpClient
   ) { }
 
+  getCard(id: number): Observable<Card> {
+    return this.http.get<Card>(`${environment.apiUrl}/card/${id}/`);
+  }
+
   createCard(name: String, listId: number): Observable<SimpleCard> {
     return this.http.post<SimpleCard>(`${environment.apiUrl}/card/`, { name: name, trelloList: listId });
   }

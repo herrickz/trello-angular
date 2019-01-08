@@ -6,7 +6,8 @@
     cdkDropList
     [cdkDropListData]="list"
     (cdkDropListDropped)="drop($event)">
-    <mat-card class="card" *ngFor="let card of list.cards" cdkDrag>{{ card.name }}</mat-card>
+    
+    <mat-card class="card" *ngFor="let card of list.cards" cdkDrag (click)="onOpenCard(card)">{{ card.name }}</mat-card>
     
     <div *ngIf="isCreatingCard">
       <mat-card class="create-card">

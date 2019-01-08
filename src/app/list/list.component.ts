@@ -3,6 +3,8 @@ import { List } from '../models/list';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { CardService } from '../services/card.service';
 import { Card } from '../models/card';
+import { MatDialog } from '@angular/material';
+import { CardModalComponent } from '../card-modal/card-modal.component';
 
 @Component({
   selector: 'list',
@@ -21,7 +23,8 @@ export class ListComponent implements OnInit {
   cardName: String = '';
 
   constructor(
-    private cardService: CardService
+    private cardService: CardService,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() { }
@@ -72,4 +75,7 @@ export class ListComponent implements OnInit {
     this.onCardDropped.emit(event);
   }
 
+  onOpenCard(card: Card) {
+    this.dialog.open(CardModalComponent, { data: { id: card.id } });
+  }
 }

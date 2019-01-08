@@ -13,6 +13,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { ListComponent } from './list/list.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { CardModalComponent } from './card-modal/card-modal.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
     BoardComponent,
     CreateBoardDialogComponent,
     ListComponent,
-    NavbarComponent
+    NavbarComponent,
+    CardModalComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +36,10 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
   providers: [
    { provide: LocationStrategy, useClass: HashLocationStrategy}
   ],
-  entryComponents: [ CreateBoardDialogComponent ],
+  entryComponents: [ 
+    CreateBoardDialogComponent,
+    CardModalComponent
+  ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

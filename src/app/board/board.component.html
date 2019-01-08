@@ -2,8 +2,28 @@
   
     <navbar></navbar>
   
-    <div class="board-name" *ngIf="board != null">
-      <h2 id="boardName" class="board">{{ board.name }}</h2>
+    <div *ngIf="board != null">
+        <button class="board-name" [disableRipple]="true" mat-button (click)="editBoardName()"><strong>{{ board.name }}</strong></button>
+    </div>
+
+    <div *ngIf="isEditingBoardName">
+      <mat-card class="edit-name-card">
+        <div class="edit-name-header">
+            <span>Rename Board</span>
+            <button mat-icon-button class="edit-name-header-cancel" (click)="cancelEditBoardName()">
+                <mat-icon>clear</mat-icon>
+            </button>
+        </div>
+        <div>
+          <h4 style="margin-bottom: 0;">Name</h4>
+          <mat-form-field style="width: 100%;">
+              <input matInput [(ngModel)]="boardEditName" #editNameField>
+          </mat-form-field>
+        </div>
+        <div>
+          <button mat-raised-button color="primary" [disabled]="!canEditBoardName()" (click)="renameBoard()">Rename</button>
+        </div>
+      </mat-card>
     </div>
   
     <div class="lists" *ngIf="board != null" cdkDropListGroup>

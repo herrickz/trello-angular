@@ -40,7 +40,35 @@
 }
 
 .board-name {
+  margin-left: 0.5em;
+  font-size: large;
+}
+
+.board-name:hover {
+  background: rgba(0,0,0,.12);
+}
+
+.edit-name-card {
+  width: 20em;
+  position: absolute;
+  margin-left: 0.5em;
+  z-index: 1;
+  padding: 1em;
+}
+
+.edit-name-header {
+  box-sizing: border-box;
+  color: #6b808c;
+  display: block;
+  line-height: 40px;
+  border-bottom: 1px solid rgba(9,45,66,.13);
+  overflow: hidden;
   display: flex;
-  align-items: center;
-  margin-left: 1em;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.edit-name-header-cancel {
+  position: absolute;
+  margin-left: 42%;
 }

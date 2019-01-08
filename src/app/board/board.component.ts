@@ -25,11 +25,16 @@ export class BoardComponent implements OnInit {
 
   @ViewChild('addListInput') addListInput: ElementRef;
   @ViewChild('listContainer') listContainer: ElementRef;
+  @ViewChild('editNameField') editNameField: ElementRef;
+
 
   @ViewChildren('cardContainer') containers: QueryList<ElementRef>;
   
   addingList: Boolean = false;
   addingListName: String = '';
+
+  isEditingBoardName: Boolean = false;
+  boardEditName: String = '';
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -47,6 +52,7 @@ export class BoardComponent implements OnInit {
         list.cards.sort((a, b) => { return a.order - b.order});
       }
       this.board = board;
+      this.boardEditName = this.board.name;
     }, _ => {
       this.boardLoadError = true;
     });
@@ -119,4 +125,26 @@ export class BoardComponent implements OnInit {
     }
   }
 
+  editBoardName() {
+    this.isEditingBoardName = true;
+    setTimeout(() => {
+      this.editNameField.nativeElement.focus();
+    }, 100);
+  }
+
+  cancelEditBoardName() {
+    this.isEditingBoardName = false;
+  }
+
+  canEditBoardName(): Boolean {
+    return this.board.name !== this.boardEditName;
+  }
+
+  renameBoard() {
+    this.boardService.editBoardName(this.board.id, this.boardEditName).subscribe(board => {
+      this.board.name = board.name;
+      this.boardEditName = this.board.name;
+      this.isEditingBoardName = false;
+    });
+  }
 }

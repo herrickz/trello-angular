@@ -24,7 +24,11 @@
         <div>
           <h4 style="margin-bottom: 0;">Name</h4>
           <mat-form-field style="width: 100%;">
-              <input matInput [(ngModel)]="boardEditName" #editNameField>
+              <input 
+                matInput 
+                [(ngModel)]="boardEditName" 
+                (keyup.enter)="onEditNameEnterKeyPressed()"
+                #editNameField>
           </mat-form-field>
         </div>
         <div>

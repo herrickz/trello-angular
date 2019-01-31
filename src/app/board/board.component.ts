@@ -129,6 +129,7 @@ export class BoardComponent implements OnInit {
     this.isEditingBoardName = true;
     setTimeout(() => {
       this.editNameField.nativeElement.focus();
+      this.editNameField.nativeElement.select();
     }, 100);
   }
 
@@ -146,5 +147,14 @@ export class BoardComponent implements OnInit {
       this.boardEditName = this.board.name;
       this.isEditingBoardName = false;
     });
+  }
+
+  onEditNameEnterKeyPressed() {
+    if(this.canEditBoardName()) {
+      this.renameBoard();
+    }
+    else {
+      this.isEditingBoardName = false;
+    }
   }
 }

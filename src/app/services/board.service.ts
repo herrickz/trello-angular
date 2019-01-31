@@ -26,4 +26,8 @@ export class BoardService {
   createBoard(boardName: string): Observable<Board> {
     return this.http.post<Board>(`${environment.apiUrl}/board/`, { name: boardName });
   }
+
+  editBoardName(boardId: number, newName: String): Observable<Board> {
+    return this.http.patch<Board>(`${environment.apiUrl}/board/${boardId}/`, { name: newName });
+  }
 }

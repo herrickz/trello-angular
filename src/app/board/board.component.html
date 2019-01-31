@@ -3,7 +3,14 @@
     <navbar></navbar>
   
     <div *ngIf="board != null">
-        <button class="board-name" [disableRipple]="true" mat-button (click)="editBoardName()"><strong>{{ board.name }}</strong></button>
+        <button 
+          id="boardName"
+          class="board-name"
+          [disableRipple]="true" 
+          mat-button
+          (click)="editBoardName()">
+          <strong>{{ board.name }}</strong>
+        </button>
     </div>
 
     <div *ngIf="isEditingBoardName">

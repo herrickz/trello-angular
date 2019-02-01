@@ -1,5 +1,41 @@
-<div>
+<div class="card-modal-container">
   <div *ngIf="card !== null">
-    {{ card.name }}
+    <div class="card-header">
+      <mat-icon>event_note</mat-icon>
+      <h2>{{ card.name }}</h2>
+    </div>
+    <div class="card-header">
+        <mat-icon>notes</mat-icon>
+        <h3>Description</h3>
+        <a class="edit-description-link" 
+           (click)="onEditCardDescription()"
+           *ngIf="shouldShowEditCardDescription()">Edit</a>
+    </div>
+    <div style="padding-left: 3em;">
+        <a *ngIf="shouldShowAddMoreDescription()" 
+           class="card-description-fake-text-area"
+           (click)="onEditCardDescription()">
+          Add a more detailed description...
+        </a>
+        <div *ngIf="isEditingCardDescription">
+            <textarea
+            #cardDescriptionTextArea
+            class="card-description-text-area"
+            (input)="resizeTextArea()"
+            [(ngModel)]="editCardDescriptionText"
+            (blur)="blurCardDescriptionTextArea()"></textarea>
+            <button mat-raised-button color="green">Save</button>
+            <button mat-icon-button (click)="onCancelSaveDescription()">
+                <mat-icon>clear</mat-icon>
+            </button>
+        </div>
+        
+    </div>
   </div>
+
+  <div
+    class="card-description-preview"
+    *ngIf="!isEditingCardDescription"
+    (click)="onEditCardDescription()"
+    [innerHTML]="cardDescriptionHtmlPreview"></div>
 </div>

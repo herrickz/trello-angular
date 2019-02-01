@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ListComponent } from './list.component';
 import { of } from 'rxjs';
 import { SimpleCard } from '../models/simple-card';
+import { NullAstVisitor } from '@angular/compiler';
 
 describe('ListComponent Unit', () => {
 
@@ -17,7 +18,7 @@ describe('ListComponent Unit', () => {
         mockCardNameTextAreaNativeElement = jasmine.createSpyObj('NativeElement', ['focus', 'scrollIntoView']);
         mockOnCardCreatedEventEmitter = jasmine.createSpyObj('EventEmitter', ['emit']);
         
-        listComponent = new ListComponent(mockCardService);
+        listComponent = new ListComponent(mockCardService, null);
         listComponent.cardNameTextArea = { nativeElement: mockCardNameTextAreaNativeElement };
     });
 

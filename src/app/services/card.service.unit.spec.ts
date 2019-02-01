@@ -24,7 +24,7 @@ describe('CardService Unit', () => {
   describe('updateCardOrder', () => {
     it('with { id: 1, name: "card", order: 0, trelloList: 1 } should call http.patch with http://localhost:8000/api/card/1/ with { id: 1, order: 0, trelloList: 1 }', () => {
 
-      const testCard: Card = { id: 1, name: 'card', order: 0, trelloList: 1 };
+      const testCard: Card = { id: 1, name: 'card', order: 0, trelloList: 1, description: '' };
   
       cardService.updateCardOrder(testCard);
   

@@ -91,13 +91,15 @@ describe('BoardComponent Unit', () => {
                 id: 2,
                 name: 'second card',
                 order: 1,
-                trelloList: 1
+                trelloList: 1,
+                description: ''
               },
               {
                 id: 1,
                 name: 'first card',
                 order: 0,
-                trelloList: 1
+                trelloList: 1,
+                description: ''
               }
             ]
           },
@@ -109,25 +111,29 @@ describe('BoardComponent Unit', () => {
                 id: 5,
                 name: 'card',
                 order: 3,
-                trelloList: 1
+                trelloList: 1,
+                description: ''
               },
               {
                 id: 4,
                 name: 'card',
                 order: 2,
-                trelloList: 1
+                trelloList: 1,
+                description: ''
               },
               {
                 id: 3,
                 name: 'card',
                 order: 1,
-                trelloList: 1
+                trelloList: 1,
+                description: ''
               },
               {
                 id: 2,
                 name: 'card',
                 order: 0,
-                trelloList: 1
+                trelloList: 1,
+                description: ''
               }
             ]
           }
@@ -465,7 +471,8 @@ describe('BoardComponent Unit', () => {
         id: 1,
         name: 'hello',
         trelloList: 1,
-        order: 0
+        order: 0,
+        description: ''
       }
   
       expect(boardComponent.board.lists[0].cards[0]).toEqual(expectedCard);

@@ -48,7 +48,8 @@ export class ListComponent implements OnInit {
           id: card.id,
           name: card.name,
           trelloList: card.trelloList,
-          order: this.list.cards.length
+          order: this.list.cards.length,
+          description: ''
         }
 
         this.list.cards.push(cardToAdd);
@@ -76,6 +77,9 @@ export class ListComponent implements OnInit {
   }
 
   onOpenCard(card: Card) {
-    this.dialog.open(CardModalComponent, { data: { id: card.id } });
+    this.dialog.open(CardModalComponent, { 
+      data: { id: card.id },
+      panelClass: 'card-modal'
+    });
   }
 }

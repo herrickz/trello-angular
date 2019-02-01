@@ -91,7 +91,8 @@ export class BoardComponent implements OnInit {
           id: card.id,
           name: card.name,
           trelloList: card.trelloList,
-          order: list.cards.length
+          order: list.cards.length,
+          description: ''
         }
         list.cards.push(cardToAdd);
         return;

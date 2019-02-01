@@ -25,4 +25,8 @@ export class CardService {
   updateCardOrder(card: Card): Observable<Card> {
     return this.http.patch<Card>(`${environment.apiUrl}/card/${card.id}/`, { id: card.id, order: card.order, trelloList: card.trelloList });
   }
+
+  updateCardDescription(card: Card, description: String): Observable<Card> {
+    return this.http.patch<Card>(`${environment.apiUrl}/card/${card.id}/`, { id: card.id, description: description });
+  }
 }

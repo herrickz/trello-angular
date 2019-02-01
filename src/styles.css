@@ -25,9 +25,22 @@ mat-card.card {
 
 html{
     height: 100%;
+    color: #17394d;
+    font-family: Helvetica Neue,Arial,Helvetica,sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
 }
 body {
     min-height: 100%;
     margin: 0;
     overflow: hidden;
+}
+
+.card-modal .mat-dialog-container {
+    background: #ebeef0;
+}
+
+div.card-description-preview > * {
+    margin: 0 0 0.5em;
 }
